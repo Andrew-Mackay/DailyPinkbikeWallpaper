@@ -20,11 +20,13 @@ downloadURL = urlStart + photoNum + '/' + photoNum + urlEnd
 
 r2 = requests.get(downloadURL)
 
-# Save image to file named "PinkbikeBackground.jpg"
-open('PinkbikeBackground.jpg', 'wb').write(r2.content)
+dir_path = os.path.dirname(os.path.realpath(__file__))
+file_location = dir_path + '/' + 'PinkbikeBackground.jpg'
 
+# Save image to file named "PinkbikeBackground.jpg"
+open(file_location, 'wb').write(r2.content)
 # Terminal command to set background wallpaper in Ubuntu 16
-setDesktopWallpaperCommand = "gsettings set org.gnome.desktop.background picture-uri \"file://" + os.path.abspath('PinkbikeBackground.jpg') + "\""
+setDesktopWallpaperCommand = "gsettings set org.gnome.desktop.background picture-uri \"file://" + file_location + '\"'
 
 # Uncomment if script failing
 #os.environ['GIO_EXTRA_MODULES'] = '/usr/lib/x86_64-linux-gnu/gio/modules/'
