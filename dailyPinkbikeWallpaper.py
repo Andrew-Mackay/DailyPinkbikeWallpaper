@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import os
+import sys
 
 
 r = requests.get("https://www.pinkbike.com/")
@@ -21,7 +22,12 @@ downloadURL = urlStart + photoNum + '/' + photoNum + urlEnd
 
 r2 = requests.get(downloadURL)
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+if getattr(sys, 'frozen', False):
+    # frozen
+    dir_path = os.path.dirname(sys.executable)
+else:
+    # unfrozen
+    dir_path = os.path.dirname(os.path.realpath(__file__))
 
 file_location = dir_path + '/' + 'PinkbikeBackground.jpg'
 
