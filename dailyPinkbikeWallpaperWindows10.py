@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import os
+import ctypes
 
 
 r = requests.get("https://www.pinkbike.com/")
@@ -23,16 +24,10 @@ r2 = requests.get(downloadURL)
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-file_location = dir_path + '/' + 'PinkbikeBackground.jpg'
+file_location = dir_path + '\\' + 'PinkbikeBackground.jpg'
 
 # Save image to file named "PinkbikeBackground.jpg"
 open(file_location, 'wb').write(r2.content)
 
-# Terminal command to set background wallpaper in Ubuntu 16
-setDesktopWallpaperCommand = "gsettings set org.gnome.desktop.background picture-uri \"file://" + file_location + '\"'
-
-# Uncomment if script failing
-#os.environ['GIO_EXTRA_MODULES'] = '/usr/lib/x86_64-linux-gnu/gio/modules/'
-
-# Set the background wallpaper
-os.system(setDesktopWallpaperCommand)
+# Set background
+ctypes.windll.user32.SystemParametersInfoW(20, 0, file_location, 3)
