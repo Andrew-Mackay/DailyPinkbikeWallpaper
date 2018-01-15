@@ -1,6 +1,10 @@
 from cx_Freeze import setup, Executable
 
-setup(name="Pinkbike Wallpaper",
+build_exe_opts = {"silent":False,
+                  "packages":['lxml', 'gzip'],}
+
+setup(name="PinkbikeWallpaper",
       version="0.1",
       description="Program to set desktop wallpaper to the current PoD on pinkbike",
-      executables=[Executable("dailyPinkbikeWallpaperWindows10.py")])
+      options={"build_exe": build_exe_opts},
+      executables=[Executable("PinkbikeWallpaper.py")])
